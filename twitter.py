@@ -262,23 +262,27 @@ class twitter():
                 os._exit(1)
 
         def twitter(self):
-            for (ac, pw) in self.dic.items():
-                from selenium import webdriver
-                browser = webdriver.PhantomJS(self.pjs)
-                browser.get('http://m.twitter.com/login')
-                browser.find_element_by_id('session[username_or_email]').send_keys(ac)
-                browser.find_element_by_id('session[password]').send_keys(pw)
-                try:
-                    browser.find_element_by_class_name('message')
-                    print('[+][Failed] Invalid Username or Password. ['+(ac+':'+pw).rstrip()+']')
-                    continue
-                except:
-                    browser.get('https://m.twitter.com/compose/tweet')
-                    browser.find_element_by_name('tweet[text]').send_keys(self.tweet)
-                    browser.find_element_by_name('commit').click()
-                    print('[+][Done] Tweeted ['+(ac+':'+pw).rstrip()+']')
-                pass
-
+            try:
+                for (ac, pw) in self.dic.items():
+                    from selenium import webdriver
+                    browser = webdriver.PhantomJS(self.pjs)
+                    browser.get('http://m.twitter.com/login')
+                    browser.find_element_by_id('session[username_or_email]').send_keys(ac)
+                    browser.find_element_by_id('session[password]').send_keys(pw)
+                    try:
+                        browser.find_element_by_class_name('message')
+                        print('[+][Failed] Invalid Username or Password. [' + (ac + ':' + pw).rstrip() + ']')
+                        continue
+                    except:
+                        browser.get('https://m.twitter.com/compose/tweet')
+                        browser.find_element_by_name('tweet[text]').send_keys(self.tweet)
+                        browser.find_element_by_name('commit').click()
+                        print('[+][Done] Tweeted [' + (ac + ':' + pw).rstrip() + ']')
+                    pass
+            except KeyboardInterrupt:
+                import os
+                os._exit(1)
+                
         def Start(self):
             import os, time
             try:
@@ -298,11 +302,11 @@ class twitter():
                             time.sleep(10)
                         else:
                             print('[-] Please Enter Valid Tweet To Share => ')
-                            time.sleep(2)
+                            time.sleep(1)
                             continue
                     else:
                         print('[-] Please Enter Valid Path To Continue => ')
-                        time.sleep(2)
+                        time.sleep(1)
                         continue
                 pass
             except KeyboardInterrupt as e:
