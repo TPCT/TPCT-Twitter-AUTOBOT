@@ -205,6 +205,15 @@ class twitter():
 
     class main:
         def __init__(self):
+            self.coder = """
+       _____ ____   ____ _____   _____          _____   ____   ___ _____
+      |_   _|  _ \ / ___|_   _| |_   _|_      _|_   _| | __ ) / _ \_   _|
+        | | | |_) | |     | |     | | \ \ /\ / / | |   |  _ \| | | || |
+        | | |  __/| |___  | |     | |  \ V  V /  | |   | |_) | |_| || |
+        |_| |_|    \____| |_|     |_|   \_/\_/   |_|   |____/ \___/ |_|
+             My FB => https://www.facebook.com/taylor.ackerley.9
+                   My Github => https://github.com/TPCT
+                   """
             self.dic = None
             def title():
                 import os
@@ -277,6 +286,7 @@ class twitter():
                     def cls():
                         os.system('cls' if os.name == 'nt' else 'clear')
                     cls()
+                    print(self.coder)
                     path = input('[+] Please Enter Acc:Pass list Path => ')
                     if os.path.isfile(path):
                         tweet = input('[+] Please Enter Tweet To Share => ')
